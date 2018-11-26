@@ -11,7 +11,7 @@ export class TestRail {
   }
 
   public createRun(name: string, description: string) {
-    axios({
+    axios({ 
       method: 'post',
       url: `${this.base}/add_run/${this.options.projectId}`,
       headers: { 'Content-Type': 'application/json' },
