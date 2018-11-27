@@ -11,7 +11,7 @@ Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 ```shell
 $ npm install stu-cypress-testrail-reporter --save-dev 
 ```
-
+ 
 ## Usage
 
 Add reporter to your `cypress.json`:
