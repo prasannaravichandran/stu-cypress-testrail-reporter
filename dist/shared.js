@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns {any}
  */
 function titleToCaseIds(title) {
-    let caseIds = [];
-    let testCaseIdRegExp = /\bT?C(\d+)\b/g;
-    let m;
+    var caseIds = [];
+    var testCaseIdRegExp = /\bT?C(\d+)\b/g;
+    var m;
     while ((m = testCaseIdRegExp.exec(title)) !== null) {
-        let caseId = parseInt(m[1]);
+        var caseId = parseInt(m[1]);
         caseIds.push(caseId);
     }
     return caseIds;

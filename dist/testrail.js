@@ -1,16 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios = require('axios');
-const chalk = require('chalk');
-class TestRail {
-    constructor(options) {
+var axios = require('axios');
+var chalk = require('chalk');
+var TestRail = /** @class */ (function () {
+    function TestRail(options) {
         this.options = options;
-        this.base = `https://${options.domain}/index.php?/api/v2`;
+        this.base = "https://" + options.domain + "/index.php?/api/v2";
     }
-    createRun(name, description) {
+    TestRail.prototype.createRun = function (name, description) {
+        var _this = this;
         axios({
             method: 'post',
-            url: `${this.base}/add_run/${this.options.projectId}`,
+            url: this.base + "/add_run/" + this.options.projectId,
             headers: { 'Content-Type': 'application/json' },
             auth: {
                 username: this.options.username,
@@ -18,20 +19,21 @@ class TestRail {
             },
             data: JSON.stringify({
                 suite_id: this.options.suiteId,
-                name,
-                description,
+                name: name,
+                description: description,
                 include_all: true,
             }),
         })
-            .then(response => {
-            this.runId = response.data.id;
+            .then(function (response) {
+            _this.runId = response.data.id;
         })
-            .catch(error => console.error(error));
-    }
-    updateRun(name, description) {
+            .catch(function (error) { return console.error(error); });
+    };
+    TestRail.prototype.updateRun = function (name, description) {
+        var _this = this;
         axios({
             method: 'post',
-            url: `${this.base}/update_run/${this.options.runId}`,
+            url: this.base + "/update_run/" + this.options.runId,
             headers: { 'Content-Type': 'application/json' },
             auth: {
                 username: this.options.username,
@@ -39,44 +41,46 @@ class TestRail {
             },
             data: JSON.stringify({
                 suite_id: this.options.suiteId,
-                name,
-                description,
+                name: name,
+                description: description,
                 include_all: true,
             }),
         })
-            .then(response => {
-            this.runId = response.data.id;
+            .then(function (response) {
+            _this.runId = response.data.id;
         })
-            .catch(error => console.error(error));
-    }
-    deleteRun() {
+            .catch(function (error) { return console.error(error); });
+    };
+    TestRail.prototype.deleteRun = function () {
         axios({
             method: 'post',
-            url: `${this.base}/delete_run/${this.runId}`,
+            url: this.base + "/delete_run/" + this.runId,
             headers: { 'Content-Type': 'application/json' },
             auth: {
                 username: this.options.username,
                 password: this.options.password,
             },
-        }).catch(error => console.error(error));
-    }
-    publishResults(results) {
+        }).catch(function (error) { return console.error(error); });
+    };
+    TestRail.prototype.publishResults = function (results) {
+        var _this = this;
         axios({
             method: 'post',
-            url: `${this.base}/add_results_for_cases/${this.runId}`,
+            url: this.base + "/add_results_for_cases/" + this.runId,
             headers: { 'Content-Type': 'application/json' },
             auth: {
                 username: this.options.username,
                 password: this.options.password,
             },
-            data: JSON.stringify({ results }),
+            data: JSON.stringify({ results: results }),
         })
-            .then(response => {
+            .then(function (response) {
             console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
-            console.log('\n', ` - Results are published to ${chalk.magenta(`https://${this.options.domain}/index.php?/runs/view/${this.runId}`)}`, '\n');
+            console.log('\n', " - Results are published to " + chalk.magenta("https://" + _this.options.domain + "/index.php?/runs/view/" + _this.runId), '\n');
         })
-            .catch(error => console.error(error));
-    }
-}
+            .catch(function (error) { return console.error(error); });
+    };
+    return TestRail;
+}());
 exports.TestRail = TestRail;
 //# sourceMappingURL=testrail.js.map
