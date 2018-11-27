@@ -1,8 +1,8 @@
 # TestRail Reporter for Cypress
 
-[![version](https://img.shields.io/npm/v/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/stu-cypress-testrail-reporter)
-[![downloads](https://img.shields.io/npm/dt/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/stu-cypress-testrail-reporter)
-[![MIT License](https://img.shields.io/github/license/sturichardson/cypress-testrail-reporter.svg)](https://github.com/sturichardson/stu-cypress-testrail-reporter/blob/master/LICENSE.md)
+[![version](https://img.shields.io/npm/v/stu-cypress-testrail-reporter.svg)](https://www.npmjs.com/package/stu-cypress-testrail-reporter)
+[![downloads](https://img.shields.io/npm/dt/stu-cypress-testrail-reporter.svg)](https://www.npmjs.com/package/stu-cypress-testrail-reporter)
+[![MIT License](https://img.shields.io/github/license/sturichardson/stu-cypress-testrail-reporter.svg)](https://github.com/sturichardson/stu-cypress-testrail-reporter/blob/master/LICENSE.md)
 
 Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
@@ -66,6 +66,10 @@ If you maintain your own TestRail instance on your own server, it is recommended
 For TestRail hosted accounts maintained by [Gurock](http://www.gurock.com/), all accounts will automatically use HTTPS.
 
 You can read the whole TestRail documentation [here](http://docs.gurock.com/).
+
+## Enhancements from cypress-testrail-reporter
+
+Instead of creating a new test run each time automated tests are run in cypress, the nominated test run (runId) will be updated everytime to reflect the latest state of the tests.
 
 ## Author
 
