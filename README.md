@@ -18,14 +18,15 @@ Add reporter to your `cypress.json`:
 
 ```json
 ...
-"reporter": "cypress-testrail-reporter",
+"reporter": "stu-cypress-testrail-reporter",
 "reporterOptions": {
-  "domain": "yourdomain.testrail.com",
+  "domain": "yourdomain.testrail.io",
   "username": "username",
   "password": "password",
   "projectId": 1,
   "suiteId": 1,
-  "runId": 1
+  "runId": 1,
+  "runName": "My Automated Tests: "
 }
 ```
 
