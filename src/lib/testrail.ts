@@ -45,7 +45,8 @@ export class TestRail {
         suite_id: this.options.suiteId,
         name,
         description,
-        include_all: true,
+        include_all: (this.options.includeAll === false) ? false : true,
+        case_ids: this.options.caseIds
       }),
     })
       .then(response => {

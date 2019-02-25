@@ -43,7 +43,8 @@ var TestRail = /** @class */ (function () {
                 suite_id: this.options.suiteId,
                 name: name,
                 description: description,
-                include_all: true,
+                include_all: (this.options.includeAll === false) ? false : true,
+                case_ids: this.options.caseIds
             }),
         })
             .then(function (response) {

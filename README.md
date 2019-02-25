@@ -26,7 +26,9 @@ Add reporter to your `cypress.json`:
   "projectId": 1,
   "suiteId": 1,
   "runId": 1,
-  "runName": "My Automated Tests: "
+  "runName": "My Automated Tests: ",
+  "includeAll": false,
+  "caseIds": [1, 4, 5, 10]
 }
 ```
 
@@ -57,6 +59,10 @@ it("Can authenticate a valid userC123", ...
 **runId**: _string_ id of the Testrail run.
 
 **runName**: _string_ (optional) name of the Testrail run.
+
+**includeAll**: boolean (optional) whether to include all tests in test run;
+
+**caseIds**: Array<Object> (optional) An array of case IDs for the custom case selection;
 
 ## TestRail Settings
 
