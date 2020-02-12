@@ -12,5 +12,5 @@ export function titleToCaseIds(title: string): number[] {
     let caseId = parseInt(m[1]);
     caseIds.push(caseId);
   }
-  return caseIds;
+  return caseIds; 
 }

@@ -90,4 +90,28 @@ export class TestRail {
       })
       .catch(error => console.error(error));
   }
+
+  public resetTestRunStatus() {
+    console.log("resetTestRunStatus",this.options)
+    // axios({
+    //   method: 'post',
+    //   url: `${this.base}/add_results/${this.options.runId}`,
+    //   headers: { 'Content-Type': 'application/json' },
+    //   auth: {
+    //     username: this.options.username,
+    //     password: this.options.password,
+    //   },
+    //   data: JSON.stringify({
+    //     suite_id: this.options.suiteId,
+    //     name,
+    //     description,
+    //     include_all: (this.options.includeAll === false) ? false : true,
+    //     case_ids: this.options.caseIds
+    //   }),
+    // })
+    //   .then(response => {
+    //     this.runId = response.data.id;
+    //   })
+    //   .catch(error => console.error(error));
+  }
 }
