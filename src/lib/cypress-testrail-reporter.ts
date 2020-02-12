@@ -11,7 +11,7 @@ export class CypressTestRailReporter extends reporters.Spec {
 
   constructor(runner: any, options: any) {
     super(runner);
-
+ 
     let reporterOptions = options.reporterOptions;
     this.testRail = new TestRail(reporterOptions);
     this.validate(reporterOptions, 'domain');
@@ -19,12 +19,15 @@ export class CypressTestRailReporter extends reporters.Spec {
     this.validate(reporterOptions, 'password');
     this.validate(reporterOptions, 'projectId');
     this.validate(reporterOptions, 'suiteId');
+    this.validate(reporterOptions, 'runId');
 
     runner.on('start', () => {
       const executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
       const name = `${reporterOptions.runName || 'Automated test run'} ${executionDateTime}`;
       const description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
-      this.testRail.createRun(name, description);
+      console.log("options",options);
+      this.testRail.resetTestRunStatus()
+      this.testRail.updateRun(name, description);
     });
 
     runner.on('pass', test => {
@@ -63,7 +66,7 @@ export class CypressTestRailReporter extends reporters.Spec {
           'No testcases were matched. Ensure that your tests are declared correctly and matches Cxxx',
           '\n'
         );
-        this.testRail.deleteRun();
+        // this.testRail.deleteRun();
 
         return;
       }
