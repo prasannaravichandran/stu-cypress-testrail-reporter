@@ -29,11 +29,22 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'projectId');
         _this.validate(reporterOptions, 'suiteId');
         _this.validate(reporterOptions, 'runId');
-        runner.on('start', function () {
+        runner.on('suite', function (test) {
+            if (!options.reporterOptions.singleRunStatus) {
+                if (test.tests[0]) {
+                    var startingId = shared_1.titleToCaseIds(test.tests[0].title);
+                    if (startingId[0] === options.reporterOptions.startCaseId) {
+                        _this.testRail.resetTestRunStatus();
+                    }
+                }
+            }
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
             var name = (reporterOptions.runName || 'Automated test run') + " " + executionDateTime;
             var description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
-            _this.testRail.resetTestRunStatus();
+            console.log("options", options);
+            if (options.reporterOptions.caseIds[0] === options.reporterOptions.startCaseId) {
+                _this.testRail.resetTestRunStatus();
+            }
             _this.testRail.updateRun(name, description);
         });
         runner.on('pass', function (test) {
