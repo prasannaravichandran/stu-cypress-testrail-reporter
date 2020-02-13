@@ -11,7 +11,7 @@ export class CypressTestRailReporter extends reporters.Spec {
 
   constructor(runner: any, options: any) {
     super(runner);
- 
+
     let reporterOptions = options.reporterOptions;
     this.testRail = new TestRail(reporterOptions);
     this.validate(reporterOptions, 'domain');
@@ -25,8 +25,7 @@ export class CypressTestRailReporter extends reporters.Spec {
       const executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
       const name = `${reporterOptions.runName || 'Automated test run'} ${executionDateTime}`;
       const description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
-      console.log("options",options);
-      this.testRail.resetTestRunStatus()
+      this.testRail.resetTestRunStatus();
       this.testRail.updateRun(name, description);
     });
 
