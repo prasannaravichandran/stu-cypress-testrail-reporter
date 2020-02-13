@@ -115,7 +115,14 @@ export class TestRail {
       data: JSON.stringify(resetResult),
     })
       .then(response => {
-        this.runId = response.data.id;
+        console.log("resetTestRunStatus response",response)
+        console.log(
+          '\n',
+          ` - Resetting the status done in ${chalk.magenta(
+            `https://${this.options.domain}/index.php?/runs/view/${this.runId}`
+          )}`,
+          '\n'
+        );
       })
       .catch(error => console.error(error));
   }

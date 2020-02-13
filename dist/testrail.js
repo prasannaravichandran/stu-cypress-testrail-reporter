@@ -105,7 +105,8 @@ var TestRail = /** @class */ (function () {
             data: JSON.stringify(resetResult),
         })
             .then(function (response) {
-            _this.runId = response.data.id;
+            console.log("resetTestRunStatus response", response);
+            console.log('\n', " - Resetting the status done in " + chalk.magenta("https://" + _this.options.domain + "/index.php?/runs/view/" + _this.runId), '\n');
         })
             .catch(function (error) { return console.error(error); });
     };
