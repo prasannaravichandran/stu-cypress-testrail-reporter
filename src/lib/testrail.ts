@@ -97,7 +97,7 @@ export class TestRail {
     
     this.options.caseIds.forEach(element => {
         let resultObj = {
-            "test_id": element,
+            "case_id": element,
             "status_id": 4,
             "comment": "Resetting the status",
         }
@@ -106,7 +106,7 @@ export class TestRail {
     console.log("resetResult",resetResult)
     axios({
       method: 'post',
-      url: `${this.base}/add_results/${this.options.runId}`,
+      url: `${this.base}/add_results_for_cases/${this.options.runId}`,
       headers: { 'Content-Type': 'application/json' },
       auth: {
         username: this.options.username,
