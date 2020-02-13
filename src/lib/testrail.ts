@@ -93,25 +93,30 @@ export class TestRail {
 
   public resetTestRunStatus() {
     console.log("resetTestRunStatus",this.options)
-    // axios({
-    //   method: 'post',
-    //   url: `${this.base}/add_results/${this.options.runId}`,
-    //   headers: { 'Content-Type': 'application/json' },
-    //   auth: {
-    //     username: this.options.username,
-    //     password: this.options.password,
-    //   },
-    //   data: JSON.stringify({
-    //     suite_id: this.options.suiteId,
-    //     name,
-    //     description,
-    //     include_all: (this.options.includeAll === false) ? false : true,
-    //     case_ids: this.options.caseIds
-    //   }),
-    // })
-    //   .then(response => {
-    //     this.runId = response.data.id;
-    //   })
-    //   .catch(error => console.error(error));
+    let resetResult = {"results":[]};
+    
+    this.options.caseIds.forEach(element => {
+        let resultObj = {
+            "test_id": element,
+            "status_id": 4,
+            "comment": "Resetting the status",
+        }
+        resetResult.results.push(resultObj);
+    });
+    console.log("resetResult",resetResult)
+    axios({
+      method: 'post',
+      url: `${this.base}/add_results/${this.options.runId}`,
+      headers: { 'Content-Type': 'application/json' },
+      auth: {
+        username: this.options.username,
+        password: this.options.password,
+      },
+      data: JSON.stringify(resetResult),
+    })
+      .then(response => {
+        this.runId = response.data.id;
+      })
+      .catch(error => console.error(error));
   }
 }

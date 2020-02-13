@@ -82,27 +82,32 @@ var TestRail = /** @class */ (function () {
             .catch(function (error) { return console.error(error); });
     };
     TestRail.prototype.resetTestRunStatus = function () {
+        var _this = this;
         console.log("resetTestRunStatus", this.options);
-        // axios({
-        //   method: 'post',
-        //   url: `${this.base}/add_results/${this.options.runId}`,
-        //   headers: { 'Content-Type': 'application/json' },
-        //   auth: {
-        //     username: this.options.username,
-        //     password: this.options.password,
-        //   },
-        //   data: JSON.stringify({
-        //     suite_id: this.options.suiteId,
-        //     name,
-        //     description,
-        //     include_all: (this.options.includeAll === false) ? false : true,
-        //     case_ids: this.options.caseIds
-        //   }),
-        // })
-        //   .then(response => {
-        //     this.runId = response.data.id;
-        //   })
-        //   .catch(error => console.error(error));
+        var resetResult = { "results": [] };
+        this.options.caseIds.forEach(function (element) {
+            var resultObj = {
+                "test_id": element,
+                "status_id": 4,
+                "comment": "Resetting the status",
+            };
+            resetResult.results.push(resultObj);
+        });
+        console.log("resetResult", resetResult);
+        axios({
+            method: 'post',
+            url: this.base + "/add_results/" + this.options.runId,
+            headers: { 'Content-Type': 'application/json' },
+            auth: {
+                username: this.options.username,
+                password: this.options.password,
+            },
+            data: JSON.stringify(resetResult),
+        })
+            .then(function (response) {
+            _this.runId = response.data.id;
+        })
+            .catch(function (error) { return console.error(error); });
     };
     return TestRail;
 }());
