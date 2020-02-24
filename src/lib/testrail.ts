@@ -92,7 +92,6 @@ export class TestRail {
   }
 
   public resetTestRunStatus() {
-    console.log("resetTestRunStatus",this.options)
     let resetResult = {"results":[]};
     
     this.options.caseIds.forEach(element => {
@@ -103,7 +102,6 @@ export class TestRail {
         }
         resetResult.results.push(resultObj);
     });
-    console.log("resetResult",resetResult)
     axios({
       method: 'post',
       url: `${this.base}/add_results_for_cases/${this.options.runId}`,

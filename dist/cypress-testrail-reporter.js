@@ -41,10 +41,6 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
             var name = (reporterOptions.runName || 'Automated test run') + " " + executionDateTime;
             var description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
-            console.log("options", options);
-            if (options.reporterOptions.caseIds[0] === options.reporterOptions.startCaseId) {
-                _this.testRail.resetTestRunStatus();
-            }
             _this.testRail.updateRun(name, description);
         });
         runner.on('pass', function (test) {
